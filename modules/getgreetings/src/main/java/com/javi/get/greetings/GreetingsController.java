@@ -1,5 +1,6 @@
 package com.javi.get.greetings;
 
+import lombok.AllArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,9 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/api/v1/greetings")
-public record GreetingsController(RestTemplate restTemplate) {
+@AllArgsConstructor
+public class GreetingsController {
+    private final RestTemplate restTemplate;
     @GetMapping
     public ResponseEntity<String> getGreeting() {
         final String greetings = restTemplate.exchange(
